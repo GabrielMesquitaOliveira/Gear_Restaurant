@@ -1,0 +1,107 @@
+models:
+  Cargo:
+    nome: string:50
+    timestamps: true
+    relationships:
+      hasMany: Funcionario
+
+  Cliente:
+    nome: string:50
+    email: string unique
+    email_verified_at: timestamp nullable
+    cpf: string unique
+    password: string
+    timestamps: true
+    relationships:
+      hasMany:
+        - Pedido
+        - Endereco
+        - Reserva
+
+  Endereco:
+    rua: string
+    numero: string:10
+    bairro: string:100
+    cidade: string:100
+    estado: char:2
+    cep: string:10
+    complemento: string nullable
+    timestamps: true
+    relationships:
+      belongsTo: Cliente
+
+  CategoriaProduto:
+    nome: string:100
+    timestamps: true
+    relationships:
+      hasMany: Produto
+
+  Produto:
+    imagem: string nullable
+    nome: string:100
+    preco: decimal:10,2
+    descricao: text nullable
+    disponivel: boolean default:true
+    quantidade_estoque: integer default:0
+    timestamps: true
+    relationships:
+      belongsTo: CategoriaProduto
+      hasMany: ItemPedido
+
+  Mesa:
+    numero: integer unique
+    capacidade: integer
+    ocupada: boolean default:false
+    timestamps: true
+    relationships:
+      hasMany:
+        - Pedido
+        - Reserva
+
+  Funcionario:
+    nome: string:100
+    telefone: string:12
+    timestamps: true
+    relationships:
+      belongsTo: Cargo
+      hasMany: Atendimento
+
+  Pedido:
+    status: enum:['Aguardando', 'Em Processamento', 'Concluído', 'Cancelado'] default:'Aguardando'
+    status_pagamento: enum:['Pendente', 'Pago', 'Cancelado'] default:'Pendente'
+    valor: decimal:10,2
+    timestamps: true
+    relationships:
+      belongsTo:
+        - Cliente
+        - Atendimento:nullable
+        - Mesa:nullable
+      hasMany:
+        - ItemPedido
+
+  Atendimento:
+    timestamps: true
+    relationships:
+      belongsTo:
+        - Funcionario
+        - Pedido
+        - Mesa
+
+  ItemPedido:
+    quantidade: integer
+    preco_unitario: decimal:10,2
+    total: decimal:10,2
+    timestamps: true
+    relationships:
+      belongsTo:
+        - Pedido
+        - Produto
+
+  Reserva:
+    data_reserva: date
+    status: enum:['Aguardando', 'Confirmado', 'Cancelado'] default:'Aguardando'
+    timestamps: true
+    relationships:
+      belongsTo:
+        - Mesa
+        - Cliente
