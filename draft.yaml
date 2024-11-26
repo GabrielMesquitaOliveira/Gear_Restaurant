@@ -13,10 +13,7 @@ models:
     password: string
     timestamps: true
     relationships:
-      hasMany:
-        - Pedido
-        - Endereco
-        - Reserva
+      hasMany: Pedido, Endereco, Reserva
 
   Endereco:
     rua: string
@@ -54,9 +51,7 @@ models:
     ocupada: boolean default:false
     timestamps: true
     relationships:
-      hasMany:
-        - Pedido
-        - Reserva
+      hasMany: Pedido, Reserva
 
   Funcionario:
     nome: string:100
@@ -67,25 +62,18 @@ models:
       hasMany: Atendimento
 
   Pedido:
-    status: enum:['Aguardando', 'Em Processamento', 'Concluído', 'Cancelado'] default:'Aguardando'
-    status_pagamento: enum:['Pendente', 'Pago', 'Cancelado'] default:'Pendente'
+    status: enum:Aguardando,Em Processamento,Concluído,Cancelado:default:Aguardando
+    status_pagamento: enum:Pendente,Pago,Cancelado:default:Pendente
     valor: decimal:10,2
     timestamps: true
     relationships:
-      belongsTo:
-        - Cliente
-        - Atendimento:nullable
-        - Mesa:nullable
-      hasMany:
-        - ItemPedido
+      belongsTo: Cliente, Atendimento, Mesa
+      hasMany: ItemPedido
 
   Atendimento:
     timestamps: true
     relationships:
-      belongsTo:
-        - Funcionario
-        - Pedido
-        - Mesa
+      belongsTo: Funcionario, Pedido, Mesa
 
   ItemPedido:
     quantidade: integer
@@ -93,15 +81,11 @@ models:
     total: decimal:10,2
     timestamps: true
     relationships:
-      belongsTo:
-        - Pedido
-        - Produto
+      belongsTo: Pedido, Produto
 
   Reserva:
     data_reserva: date
-    status: enum:['Aguardando', 'Confirmado', 'Cancelado'] default:'Aguardando'
+    status: enum:Pendente,Confirmada,Cancelada,Finalizada:default:Aguardando
     timestamps: true
     relationships:
-      belongsTo:
-        - Mesa
-        - Cliente
+      belongsTo: Mesa, Cliente
