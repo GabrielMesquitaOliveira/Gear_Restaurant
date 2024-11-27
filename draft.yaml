@@ -9,8 +9,6 @@ models:
     nome: string:50
     email: string unique
     email_verified_at: timestamp nullable
-    cpf: string unique
-    password: string
     timestamps: true
     relationships:
       hasMany: Pedido, Endereco, Reserva
@@ -65,6 +63,8 @@ models:
     status: enum:Aguardando,Em Processamento,Concluído,Cancelado:default:Aguardando
     status_pagamento: enum:Pendente,Pago,Cancelado:default:Pendente
     valor: decimal:10,2
+    atendimento_id: unsignedInteger nullable
+    mesa_id: unsignedInteger nullable
     timestamps: true
     relationships:
       belongsTo: Cliente, Atendimento, Mesa
