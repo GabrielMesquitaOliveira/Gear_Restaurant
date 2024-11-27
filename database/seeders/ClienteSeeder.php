@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Cliente;
+use App\Models\Endereco;
 use Illuminate\Database\Seeder;
 
 class ClienteSeeder extends Seeder
@@ -12,6 +13,12 @@ class ClienteSeeder extends Seeder
      */
     public function run(): void
     {
-        Cliente::factory()->count(5)->create();
+        Cliente::factory()->count(5)->create()->each(
+            function (Cliente $cliente) {
+                Endereco::factory()->create([
+                    'cliente_id' => $cliente->id
+                ]);
+            }
+        );
     }
 }

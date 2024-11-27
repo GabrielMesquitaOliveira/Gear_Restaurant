@@ -26,8 +26,8 @@ class PedidoFactory extends Factory
             'status' => $this->faker->randomElement(["Aguardando","Processando","Concluido","Cancelado"]),
             'status_pagamento' => $this->faker->randomElement(["Pendente","Pago","Cancelado"]),
             'forma_pagamento' => $this->faker->randomElement(["Cartao","Dinheiro","Pix"]),
-            'mesa_id' => Mesa::factory(),
-            'cliente_id' => Cliente::factory(),
+            'mesa_id' => Mesa::inRandomOrder()->first()->id,
+            'cliente_id' => Cliente::inRandomOrder()->first()->id,
         ];
     }
 }

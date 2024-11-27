@@ -25,8 +25,8 @@ class ReservaFactory extends Factory
         return [
             'data_hora' => $this->faker->dateTime(),
             'status' => $this->faker->randomElement(["Pendente","Confirmada","Cancelada","Finalizada"]),
-            'mesa_id' => Mesa::factory(),
-            'cliente_id' => Cliente::factory(),
+            'mesa_id' => Mesa::inRandomOrder()->first()->id,
+            'cliente_id' => Cliente::inRandomOrder()->first()->id,
         ];
     }
 }

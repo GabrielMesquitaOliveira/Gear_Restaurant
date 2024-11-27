@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             CargoSeeder::class,
             CategoriaProdutoSeeder::class,
             ClienteSeeder::class,
-            EnderecoSeeder::class,
             FuncionarioSeeder::class,
             MesaSeeder::class,
             ProdutoSeeder::class,

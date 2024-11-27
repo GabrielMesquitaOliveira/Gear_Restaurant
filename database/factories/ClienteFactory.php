@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Cliente;
+use App\Models\Endereco;
 use App\Models\User;
 
 class ClienteFactory extends Factory

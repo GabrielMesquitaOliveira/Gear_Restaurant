@@ -28,7 +28,7 @@ class ItemPedidoFactory extends Factory
         return [
             'quantidade' => $quantidade,
             'total' => $quantidade * $produto->preco,
-            'pedido_id' => Pedido::factory(),
+            'pedido_id' => Pedido::inRandomOrder()->first()->id,
             'produto_id' => $produto->id,
         ];
     }

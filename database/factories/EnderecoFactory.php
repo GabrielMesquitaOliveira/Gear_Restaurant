@@ -3,33 +3,31 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Cliente;
-use App\Models\Endereco;
 
 class EnderecoFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * Define o modelo correspondente.
      *
      * @var string
      */
-    protected $model = Endereco::class;
+    protected $model = \App\Models\Endereco::class;
 
     /**
-     * Define the model's default state.
+     * Define o estado padrão do modelo.
      */
     public function definition(): array
     {
         return [
-            'rua' => $this->faker->word(),
-            'numero' => $this->faker->regexify('[A-Za-z0-9]{10}'),
-            'bairro' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'cidade' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'estado' => $this->faker->randomLetter(),
-            'cep' => $this->faker->regexify('[A-Za-z0-9]{10}'),
-            'complemento' => $this->faker->word(),
-            'cliente_id' => Cliente::factory(),
+            'rua' => $this->faker->streetName(), // Nome de rua realista
+            'numero' => $this->faker->buildingNumber(), // Número de edifício realista
+            'bairro' => $this->faker->citySuffix(), // Sufixo da cidade como bairro
+            'cidade' => $this->faker->city(), // Nome da cidade realista
+            'estado' => $this->faker->stateAbbr(), // Abreviação do estado (Ex.: SP, RJ)
+            'cep' => $this->faker->postcode(), // Código postal realista
+            'complemento' => $this->faker->optional()->secondaryAddress(), // Complemento opcional
+            'cliente_id' => Cliente::factory(), // Relacionamento com cliente
         ];
     }
 }
