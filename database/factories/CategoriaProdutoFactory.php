@@ -21,7 +21,19 @@ class CategoriaProdutoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->regexify('[A-Za-z0-9]{100}'),
+            'nome' => $this->faker->randomElement([
+                'Bebidas',
+                'Sobremesas',
+                'Pratos Principais',
+                'Entradas',
+                'Acompanhamentos',
+                'Molhos',
+                'Carnes',
+                'Vegetarianos',
+                'Massas',
+                'Pizzas',
+                'Sanduíches'
+            ]),
         ];
     }
 }

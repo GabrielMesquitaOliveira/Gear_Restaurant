@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('valor', 10, 2);
             $table->foreignId('atendimento_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('mesa_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('cliente_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('cliente_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 

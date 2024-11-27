@@ -22,7 +22,7 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->regexify('[A-Za-z0-9]{50}'),
+            'nome' => $this->faker->name(),
             'email' => $this->faker->safeEmail(),
             'email_verified_at' => $this->faker->dateTime(),
             'user_id' => User::factory(),

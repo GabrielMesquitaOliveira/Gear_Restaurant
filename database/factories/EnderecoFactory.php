@@ -22,13 +22,13 @@ class EnderecoFactory extends Factory
     public function definition(): array
     {
         return [
-            'rua' => $this->faker->word(),
-            'numero' => $this->faker->regexify('[A-Za-z0-9]{10}'),
-            'bairro' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'cidade' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'estado' => $this->faker->randomLetter(),
-            'cep' => $this->faker->regexify('[A-Za-z0-9]{10}'),
-            'complemento' => $this->faker->word(),
+            'rua' => $this->faker->streetName(),
+            'numero' => $this->faker->buildingNumber(),
+            'bairro' => $this->faker->word(),
+            'cidade' => $this->faker->city(),
+            'estado' => $this->faker->stateAbbr(),
+            'cep' => $this->faker->postcode(),
+            'complemento' => $this->faker->secondaryAddress(),
             'cliente_id' => Cliente::factory(),
         ];
     }

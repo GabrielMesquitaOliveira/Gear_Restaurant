@@ -66,6 +66,7 @@ models:
     valor: decimal:10,2
     atendimento_id: unsignedInteger nullable
     mesa_id: unsignedInteger nullable
+    cliente_id: unsignedInteger nullable
     timestamps: true
     relationships:
       belongsTo: Cliente, Atendimento, Mesa

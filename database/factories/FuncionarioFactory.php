@@ -23,8 +23,8 @@ class FuncionarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'telefone' => $this->faker->regexify('[A-Za-z0-9]{12}'),
+            'nome' => $this->faker->name(),
+            'telefone' => $this->faker->numerify('###########'),
             'cargo_id' => Cargo::factory(),
             'user_id' => User::factory(),
         ];

@@ -23,9 +23,9 @@ class ItemPedidoFactory extends Factory
     public function definition(): array
     {
         return [
-            'quantidade' => $this->faker->numberBetween(-10000, 10000),
-            'preco_unitario' => $this->faker->randomFloat(2, 0, 99999999.99),
-            'total' => $this->faker->randomFloat(2, 0, 99999999.99),
+            'quantidade' => $this->faker->numberBetween(1, 1000),
+            'preco_unitario' => $this->faker->randomFloat(2, 0, 9999.99),
+            'total' => $this->faker->randomFloat(2, 0, 9999.99),
             'pedido_id' => Pedido::factory(),
             'produto_id' => Produto::factory(),
         ];

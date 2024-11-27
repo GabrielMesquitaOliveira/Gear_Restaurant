@@ -22,12 +22,12 @@ class ProdutoFactory extends Factory
     public function definition(): array
     {
         return [
-            'imagem' => $this->faker->word(),
-            'nome' => $this->faker->regexify('[A-Za-z0-9]{100}'),
-            'preco' => $this->faker->randomFloat(2, 0, 99999999.99),
+            'imagem' => $this->faker->imageUrl(),
+            'nome' => $this->faker->word(),
+            'preco' => $this->faker->randomFloat(2, 0, 9999.99),
             'descricao' => $this->faker->text(),
             'disponivel' => $this->faker->boolean(),
-            'quantidade_estoque' => $this->faker->numberBetween(-10000, 10000),
+            'quantidade_estoque' => $this->faker->numberBetween(0, 1000),
             'categoria_produto_id' => CategoriaProduto::factory(),
         ];
     }

@@ -21,8 +21,8 @@ class MesaFactory extends Factory
     public function definition(): array
     {
         return [
-            'numero' => $this->faker->numberBetween(-10000, 10000),
-            'capacidade' => $this->faker->numberBetween(-10000, 10000),
+            'numero' => $this->faker->unique()->numberBetween(1, 50),
+            'capacidade' => $this->faker->numberBetween(1, 10),
             'ocupada' => $this->faker->boolean(),
         ];
     }
