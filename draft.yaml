@@ -60,7 +60,7 @@ models:
       hasMany: Atendimento
 
   Pedido:
-    status: enum:Aguardando,Em Processamento,Concluído,Cancelado:default:Aguardando
+    status: enum:Aguardando,Processando,Concluido,Cancelado:default:Processando
     status_pagamento: enum:Pendente,Pago,Cancelado:default:Pendente
     valor: decimal:10,2
     atendimento_id: unsignedInteger nullable
@@ -85,7 +85,7 @@ models:
 
   Reserva:
     data_reserva: date
-    status: enum:Pendente,Confirmada,Cancelada,Finalizada:default:Aguardando
+    status: enum:Pendente,Confirmada,Cancelada,Finalizada:default:Pendente
     timestamps: true
     relationships:
       belongsTo: Mesa, Cliente
