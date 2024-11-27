@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Atendimento;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Atendimento;
 use App\Models\Cliente;
 use App\Models\Mesa;
 use App\Models\Pedido;

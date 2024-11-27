@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $nome
  * @property string $telefone
  * @property int $cargo_id
+ * @property int $user_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -28,6 +29,7 @@ class Funcionario extends Model
         'nome',
         'telefone',
         'cargo_id',
+        'user_id',
     ];
 
     /**
@@ -38,11 +40,17 @@ class Funcionario extends Model
     protected $casts = [
         'id' => 'integer',
         'cargo_id' => 'integer',
+        'user_id' => 'integer',
     ];
 
     public function cargo(): BelongsTo
     {
         return $this->belongsTo(Cargo::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function atendimentos(): HasMany

@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Cliente;
+use App\Models\User;
 
 class ClienteFactory extends Factory
 {
@@ -24,6 +25,7 @@ class ClienteFactory extends Factory
             'nome' => $this->faker->regexify('[A-Za-z0-9]{50}'),
             'email' => $this->faker->safeEmail(),
             'email_verified_at' => $this->faker->dateTime(),
+            'user_id' => User::factory(),
         ];
     }
 }

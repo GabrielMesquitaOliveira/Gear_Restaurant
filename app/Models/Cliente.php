@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $nome
  * @property string $email
  * @property \Carbon\Carbon $email_verified_at
+ * @property int $user_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -27,6 +29,7 @@ class Cliente extends Model
         'nome',
         'email',
         'email_verified_at',
+        'user_id',
     ];
 
     /**
@@ -37,6 +40,7 @@ class Cliente extends Model
     protected $casts = [
         'id' => 'integer',
         'email_verified_at' => 'timestamp',
+        'user_id' => 'integer',
     ];
 
     public function pedidos(): HasMany
@@ -52,5 +56,10 @@ class Cliente extends Model
     public function reservas(): HasMany
     {
         return $this->hasMany(Reserva::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Cargo;
 use App\Models\Funcionario;
+use App\Models\User;
 
 class FuncionarioFactory extends Factory
 {
@@ -25,6 +26,7 @@ class FuncionarioFactory extends Factory
             'nome' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'telefone' => $this->faker->regexify('[A-Za-z0-9]{12}'),
             'cargo_id' => Cargo::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }

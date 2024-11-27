@@ -12,6 +12,7 @@ models:
     timestamps: true
     relationships:
       hasMany: Pedido, Endereco, Reserva
+      belongsTo: User
 
   Endereco:
     rua: string
@@ -56,7 +57,7 @@ models:
     telefone: string:12
     timestamps: true
     relationships:
-      belongsTo: Cargo
+      belongsTo: Cargo, User
       hasMany: Atendimento
 
   Pedido:
