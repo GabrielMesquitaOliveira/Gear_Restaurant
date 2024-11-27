@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-
         $this->command->info('Iniciando o seeding dos dados...');
 
         $this->call([
