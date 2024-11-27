@@ -7,8 +7,6 @@ models:
 
   Cliente:
     nome: string:50
-    email: string unique
-    email_verified_at: timestamp nullable
     timestamps: true
     relationships:
       hasMany: Pedido, Endereco, Reserva
@@ -63,31 +61,32 @@ models:
   Pedido:
     status: enum:Aguardando,Processando,Concluido,Cancelado:default:Processando
     status_pagamento: enum:Pendente,Pago,Cancelado:default:Pendente
+    forma_pagamento: enum:Cartao,Dinheiro,Pix:default:Cartão
     valor: decimal:10,2
-    atendimento_id: unsignedInteger nullable
     mesa_id: unsignedInteger nullable
     cliente_id: unsignedInteger nullable
     timestamps: true
     relationships:
-      belongsTo: Cliente, Atendimento, Mesa
-      hasMany: ItemPedido
+      belongsTo: Cliente, Mesa
+      hasMany: ItemPedido, Atendimento
 
   Atendimento:
     timestamps: true
     relationships:
-      belongsTo: Funcionario, Pedido, Mesa
+      belongsTo: Funcionario, Pedido
 
   ItemPedido:
     quantidade: integer
-    preco_unitario: decimal:10,2
     total: decimal:10,2
     timestamps: true
     relationships:
       belongsTo: Pedido, Produto
 
   Reserva:
-    data_reserva: date
+    data_hora: datetime
     status: enum:Pendente,Confirmada,Cancelada,Finalizada:default:Pendente
     timestamps: true
     relationships:
       belongsTo: Mesa, Cliente
+
+seeders: Cargo, Funcionario, Mesa, Pedido, Reserva, Atendimento, ItemPedido, Produto, Cliente, Endereco, CategoriaProduto
