@@ -6,7 +6,6 @@ models:
       hasMany: Funcionario
 
   Cliente:
-    nome: string:50
     timestamps: true
     relationships:
       hasMany: Pedido, Endereco, Reserva
@@ -51,8 +50,6 @@ models:
       hasMany: Pedido, Reserva
 
   Funcionario:
-    nome: string:100
-    telefone: string:12
     timestamps: true
     relationships:
       belongsTo: Cargo, User
