@@ -24,7 +24,7 @@ class FuncionarioResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('cargo_id')
-                    ->relationship('cargo', 'id')
+                    ->relationship('cargo', 'nome')
                     ->required(),
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
@@ -36,7 +36,7 @@ class FuncionarioResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('cargo.id')
+                Tables\Columns\TextColumn::make('cargo.nome')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')

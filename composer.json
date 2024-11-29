@@ -11,7 +11,9 @@
         "geekcom/validator-docs": "^3.10",
         "hasnayeen/themes": "^3.0",
         "laravel/framework": "^11.31",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "leandrocfe/filament-ptbr-form-fields": "^3.0",
+        "lucascudo/laravel-pt-br-localization": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
