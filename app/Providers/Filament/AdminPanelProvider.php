@@ -56,12 +56,8 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugin(
-                \Hasnayeen\Themes\ThemesPlugin::make()
-            )
             ->spa()
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->sidebarWidth('15%')
             ->sidebarCollapsibleOnDesktop(true)
         ;
     }

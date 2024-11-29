@@ -17,7 +17,7 @@ class CategoriaProdutoResource extends Resource
 {
     protected static ?string $model = CategoriaProduto::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'mdi-food-outline';
 
     public static function form(Form $form): Form
     {

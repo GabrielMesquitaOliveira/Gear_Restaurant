@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AtendimentoResource\Pages;
 use App\Filament\Resources\AtendimentoResource\RelationManagers;
 use App\Models\Atendimento;
+use App\Models\Pedido;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,7 +18,7 @@ class AtendimentoResource extends Resource
 {
     protected static ?string $model = Atendimento::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -36,10 +37,17 @@ class AtendimentoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('funcionario.id')
+                Tables\Columns\TextColumn::make('funcionario.user.name')
+                    ->label('Funcionario')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('pedido.id')
+                    ->numeric()
+                    ->url(fn ($record) => route('filament.admin.resources.pedidos.edit', $record->pedido->id))
+                    ->openUrlInNewTab()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('pedido.mesa.numero')
+                    ->label('mesa')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
