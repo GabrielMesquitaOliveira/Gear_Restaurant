@@ -19,6 +19,8 @@ class ItemPedidoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Gestão de Operações';
+
     public static function form(Form $form): Form
     {
         return $form

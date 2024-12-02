@@ -17,7 +17,9 @@ class FuncionarioResource extends Resource
 {
     protected static ?string $model = Funcionario::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'clarity-employee-line';
+
+    protected static ?string $navigationGroup = 'Gestão de Cadastros';
 
     public static function form(Form $form): Form
     {

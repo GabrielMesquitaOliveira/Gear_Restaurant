@@ -17,7 +17,9 @@ class ReservaResource extends Resource
 {
     protected static ?string $model = Reserva::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gmdi-table-restaurant-r';
+
+    protected static ?string $navigationGroup = 'Gestão de Operações';
 
     public static function form(Form $form): Form
     {

@@ -19,6 +19,8 @@ class CargoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-wrench';
 
+    protected static ?string $navigationGroup = 'Gestão de Cadastros';
+
     public static function form(Form $form): Form
     {
         return $form

@@ -17,7 +17,9 @@ class MesaResource extends Resource
 {
     protected static ?string $model = Mesa::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gmdi-table-restaurant-o';
+
+    protected static ?string $navigationGroup = 'Gestão de Operações';
 
     public static function form(Form $form): Form
     {

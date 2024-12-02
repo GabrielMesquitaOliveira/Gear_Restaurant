@@ -19,6 +19,10 @@ class CategoriaProdutoResource extends Resource
 
     protected static ?string $navigationIcon = 'mdi-food-outline';
 
+    protected static ?string $navigationGroup = 'Gestão de Produtos';
+
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -63,5 +67,10 @@ class CategoriaProdutoResource extends Resource
         return [
             'index' => Pages\ManageCategoriaProdutos::route('/'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }
