@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
- * @property string $imagem
  * @property string $nome
  * @property float $preco
  * @property string $descricao
@@ -29,7 +28,6 @@ class Produto extends Model
      * @var array
      */
     protected $fillable = [
-        'imagem',
         'nome',
         'preco',
         'descricao',

@@ -28,9 +28,6 @@ class ProdutoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('imagem')
-                    ->maxLength(255)
-                    ->default(null),
                 Forms\Components\TextInput::make('nome')
                     ->required()
                     ->maxLength(100),
@@ -55,8 +52,6 @@ class ProdutoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('imagem')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('preco')

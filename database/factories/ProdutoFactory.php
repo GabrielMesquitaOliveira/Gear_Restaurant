@@ -22,7 +22,6 @@ class ProdutoFactory extends Factory
     public function definition(): array
     {
         return [
-            'imagem' => $this->faker->word(),
             'nome' => $this->faker->regexify('[A-Za-z0-9]{100}'),
             'preco' => $this->faker->randomFloat(2, 0, 299.99),
             'descricao' => $this->faker->text(),
