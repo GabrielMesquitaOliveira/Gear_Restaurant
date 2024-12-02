@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -56,5 +58,13 @@ class Produto extends Model
     public function itemPedidos(): HasMany
     {
         return $this->hasMany(ItemPedido::class);
+    }
+
+    public function productPictures(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Media::class, 'media_produto', 'produto_id', 'media_id')
+            ->withPivot('order')
+            ->orderBy('order');
     }
 }

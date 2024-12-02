@@ -5,7 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProdutoResource\Pages;
 use App\Filament\Resources\ProdutoResource\RelationManagers;
 use App\Models\Produto;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -28,30 +32,87 @@ class ProdutoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nome')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('preco')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Textarea::make('descricao')
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('disponivel')
-                    ->required(),
-                Forms\Components\TextInput::make('quantidade_estoque')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\Select::make('categoria_produto_id')
-                    ->relationship('categoriaProduto', 'id')
-                    ->required(),
+                // Seção de Imagens do Produto
+                Section::make('Imagens do Produto')
+                    ->description('Adicione uma ou mais imagens representativas para o produto.')
+                    ->schema([
+                        CuratorPicker::make('product_picture_ids')
+                            ->multiple()
+                            ->relationship('productPictures', 'id')
+                            ->label('Imagens do Produto'),
+                    ])
+                    ->collapsible()
+                    ->collapsed(true),
+
+                // Seção de Informações Básicas
+                Section::make('Informações Básicas')
+                    ->description('Preencha os detalhes básicos do produto.')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('nome')
+                                    ->label('Nome do Produto')
+                                    ->placeholder('Ex.: Café Torrado 500g')
+                                    ->required()
+                                    ->maxLength(100),
+                                Forms\Components\TextInput::make('preco')
+                                    ->label('Preço')
+                                    ->placeholder('Ex.: 29.90')
+                                    ->prefix('R$')
+                                    ->required()
+                                    ->numeric(),
+                            ]),
+
+                        Forms\Components\Textarea::make('descricao')
+                            ->label('Descrição do Produto')
+                            ->placeholder('Descreva o produto, suas características e benefícios.')
+                            ->columnSpanFull(),
+                    ]),
+
+                // Seção de Estoque e Disponibilidade
+                Section::make('Estoque e Disponibilidade')
+                    ->description('Gerencie a disponibilidade e estoque do produto.')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                Forms\Components\Toggle::make('disponivel')
+                                    ->label('Disponível para venda')
+                                    ->default(true)
+                                    ->required(),
+                                Forms\Components\TextInput::make('quantidade_estoque')
+                                    ->label('Quantidade em Estoque')
+                                    ->placeholder('Ex.: 50')
+                                    ->numeric()
+                                    ->default(0)
+                                    ->required(),
+                            ]),
+                    ]),
+
+                // Seção de Categoria
+                Section::make('Categoria')
+                    ->description('Selecione a categoria a qual este produto pertence.')
+                    ->schema([
+                        Forms\Components\Select::make('categoria_produto_id')
+                            ->label('Categoria do Produto')
+                            ->relationship('categoriaProduto', 'nome') // Use 'nome' ou o campo que representa o título da categoria
+                            ->placeholder('Selecione uma categoria')
+                            ->required(),
+                    ]),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                CuratorColumn::make('productPictures')
+                    ->label('imagens')
+                    ->ring(4) // options 0,1,2,4
+                    ->overlap(4) // options 0,2,3,4
+                    ->height(100)
+                    ->circular()
+                    ->limit(4),
                 Tables\Columns\TextColumn::make('nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('preco')

@@ -47,3 +47,7 @@
 body{
     @apply bg-primary-50 dark:bg-transparent !important;
 }
+
+.curator-media-picker ul {
+    flex-wrap: nowrap !important;
+}

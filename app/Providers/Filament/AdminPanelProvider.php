@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::Pink,
-                'gray' => Color::Slate,
+                'gray'=> Color::Slate,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -61,6 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop(true)
             ->plugins([
                 \Awcodes\Curator\CuratorPlugin::make()
+                ->defaultListView('grid')
             ])
         ;
     }
