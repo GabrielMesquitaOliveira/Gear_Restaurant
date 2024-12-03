@@ -107,23 +107,24 @@ class ProdutoResource extends Resource
         return $table
             ->columns([
                 CuratorColumn::make('productPictures')
-                    ->label('imagens')
-                    ->ring(4) // options 0,1,2,4
+                    ->label('Imagens')
+                    ->ring(2) // options 0,1,2,4
                     ->overlap(4) // options 0,2,3,4
-                    ->height(100)
+                    ->height(80)
                     ->circular()
                     ->limit(4),
                 Tables\Columns\TextColumn::make('nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('preco')
                     ->numeric()
+                    ->prefix('R$ ')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('disponivel')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('quantidade_estoque')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('categoriaProduto.id')
+                Tables\Columns\TextColumn::make('categoriaProduto.nome')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

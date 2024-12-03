@@ -7,7 +7,15 @@
 /* Sidebar */
 
 .fi-sidebar {
-    @apply bg-primary-600 dark:bg-transparent !important;
+    @apply bg-primary-700 dark:bg-gray-900 !important;
+}
+
+.fi-sidebar-header .fi-icon-btn-icon{
+    @apply text-gray-600;
+}
+
+.fi-icon-btn-icon{
+    @apply text-primary-50;
 }
 
 .fi-sidebar-group div span {
@@ -45,9 +53,26 @@
 /* Backgroud */
 
 body{
-    @apply bg-primary-50 dark:bg-transparent !important;
+    @apply bg-primary-50 dark:bg-gray-950 !important;
 }
 
+/* Curator */
+
 .curator-media-picker ul {
-    flex-wrap: nowrap !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.curator-media-picker ul li {
+    flex: 1 1 calc(33.333% - 16px);
+    max-width: calc(33.333% - 16px);
+    box-sizing: border-box;
+}
+
+.curator-media-picker ul li button {
+    @apply text-primary-50;
 }
