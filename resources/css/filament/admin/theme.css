@@ -1,59 +1,75 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 @import '/node_modules/cropperjs/dist/cropper.css';
 @import '/vendor/awcodes/filament-curator/resources/css/plugin.css';
-
 @config 'tailwind.config.js';
 
 /* Sidebar */
 
 .fi-sidebar {
-    @apply bg-primary-700 dark:bg-gray-900 !important;
+    @apply bg-white;
+}
+
+.fi-topbar nav,
+.fi-sidebar-header{
+    @apply bg-transparent ring-0 shadow-none !important;
+}
+
+.fi-sidebar-header{
+}
+
+.fi-logo{
+    @apply text-primary-400;
 }
 
 .fi-sidebar-header .fi-icon-btn-icon{
-    @apply text-gray-600;
 }
 
 .fi-icon-btn-icon{
-    @apply text-primary-50;
 }
 
 .fi-sidebar-group div span {
-    @apply text-primary-50;
 }
 
 .fi-sidebar-item-icon {
-    @apply text-primary-50;
 }
 
 .fi-sidebar-item a {
-    @apply text-primary-100;
 }
 
 .fi-sidebar-item-label {
-    @apply text-primary-100;
 }
 
 .fi-sidebar-item a:hover {
-    @apply text-primary-50 bg-primary-700;
+    @apply bg-primary-400 text-white;
+}
+.fi-sidebar-item a:hover svg,
+.fi-sidebar-item a:hover .fi-sidebar-item-label {
+    @apply text-white;
+}
+.fi-sidebar-item  svg {
+    @apply text-primary-400;
 }
 
 .fi-sidebar-item-active a {
-    @apply text-white bg-primary-800;
+    @apply bg-primary-400;
 }
 
-.fi-sidebar-item-active .fi-sidebar-item-icon {
+.fi-sidebar-item-active a svg,
+.fi-sidebar-item-active a .fi-sidebar-item-label {
+        @apply text-white;
+}
+
+.fi-icon-btn svg {
     @apply text-primary-400;
 }
 
 .fi-main-ctn {
-    @apply bg-primary-50 dark:bg-transparent;
 }
 
 /* Backgroud */
 
 body{
-    @apply bg-primary-50 dark:bg-gray-950 !important;
+    @apply bg-primary-50 !important;
 }
 
 /* Curator */

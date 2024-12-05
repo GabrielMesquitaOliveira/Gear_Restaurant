@@ -7,4 +7,10 @@ export default {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],
+    plugins: [
+        require("@catppuccin/tailwindcss")({
+          prefix: "ctp",
+          defaultFlavour: "latte",
+        }),
+    ],
 }
