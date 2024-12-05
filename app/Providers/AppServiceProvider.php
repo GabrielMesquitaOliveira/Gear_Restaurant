@@ -25,21 +25,9 @@ class AppServiceProvider extends ServiceProvider
     {
         FilamentColor::register([
             'danger' => Color::hex('#D20F39'), // Red
-            'gray' => Color::Slate,
+            'gray' => Color::Neutral,
             'info' => Color::hex('#1E66F5'),  // Blue
-            'primary' => [
-                '50'  => '#fcf3fa',
-                '100' => '#fbe8f7',
-                '200' => '#f8d2f0',
-                '300' => '#f3aee2',
-                '400' => '#ea76cb',
-                '500' => '#e054b6',
-                '600' => '#ce3498',
-                '700' => '#b2247d',
-                '800' => '#942067',
-                '900' => '#7b2057',
-                '950' => '#4b0c32',
-            ],
+            'primary' => Color::hex('#F0217E'),
             'success' => Color::hex('#40A02B'), // Green
             'warning' => Color::hex('#DF8E1D'), // Yellow
         ]);

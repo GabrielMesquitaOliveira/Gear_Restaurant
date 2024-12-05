@@ -34,13 +34,21 @@
 }
 
 .fi-sidebar-item a {
+    background-color: #FBFBFB;
+    background: linear-gradient(to right, #F564A5 0%, #F564A5 100%);
+    background-size: 0% 100%; /* Começa invisível */
+    background-repeat: no-repeat; /* Evita repetição */
+    transition: background-size 0.2s ease-in-out; /* Transição suave */
+    color: inherit; /* Mantém a cor do texto inicialmente */
 }
 
 .fi-sidebar-item-label {
 }
 
 .fi-sidebar-item a:hover {
-    @apply bg-primary-400 text-white;
+    background-color: #FBFBFB;
+
+    background-size: 100% 100%; /* Preenche completamente o fundo */
 }
 .fi-sidebar-item a:hover svg,
 .fi-sidebar-item a:hover .fi-sidebar-item-label {
@@ -70,6 +78,10 @@
 
 .fi-body{
     @apply bg-primary-50 dark:bg-gray-950 !important;
+}
+
+.bg-white{
+    background-color: #FBFBFB;
 }
 
 
