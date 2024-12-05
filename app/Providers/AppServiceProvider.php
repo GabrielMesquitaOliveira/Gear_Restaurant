@@ -23,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        PanelsRenderHook::GLOBAL_SEARCH_BEFORE;
         FilamentColor::register([
             'danger' => Color::hex('#D20F39'), // Red
             'gray' => Color::Slate,
