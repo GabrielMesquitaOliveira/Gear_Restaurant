@@ -6,6 +6,8 @@ use App\Filament\Resources\PedidoResource\Pages;
 use App\Filament\Resources\PedidoResource\RelationManagers;
 use App\Models\Pedido;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,18 +27,66 @@ class PedidoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('status')
-                    ->required(),
-                Forms\Components\TextInput::make('status_pagamento')
-                    ->required(),
-                Forms\Components\TextInput::make('forma_pagamento')
-                    ->required(),
-                Forms\Components\Select::make('mesa_id')
-                    ->relationship('mesa', 'id')
-                    ->default(null),
-                Forms\Components\Select::make('cliente_id')
-                    ->relationship('cliente', 'id')
-                    ->default(null),
+                // Seção de Status
+                Section::make('Status do Pedido')
+                    ->description('Gerencie o status do pedido e do pagamento.')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                Forms\Components\Select::make('status')
+                                    ->label('Status do Pedido')
+                                    ->options([
+                                        'Aguardando' => 'Aguardando',
+                                        'Processando' => 'Processando',
+                                        'Concluido' => 'Concluído',
+                                        'Cancelado' => 'Cancelado',
+                                    ])
+                                    ->placeholder('Selecione o status do pedido')
+                                    ->required(),
+
+                                Forms\Components\Select::make('status_pagamento')
+                                    ->label('Status do Pagamento')
+                                    ->options([
+                                        'Pendente' => 'Pendente',
+                                        'Pago' => 'Pago',
+                                        'Cancelado' => 'Cancelado',
+                                    ])
+                                    ->placeholder('Selecione o status do pagamento')
+                                    ->required(),
+                            ]),
+
+                        Forms\Components\Select::make('forma_pagamento')
+                            ->label('Forma de Pagamento')
+                            ->options([
+                                'Cartao' => 'Cartão',
+                                'Dinheiro' => 'Dinheiro',
+                                'Pix' => 'Pix',
+                            ])
+                            ->placeholder('Selecione a forma de pagamento')
+                            ->columnSpanFull()
+                            ->required(),
+                    ]),
+
+                // Seção de Associação
+                Section::make('Associação com Mesa e Cliente')
+                    ->description('Associe o pedido a uma mesa e um cliente registrados.')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                Forms\Components\Select::make('mesa_id')
+                                    ->label('Mesa')
+                                    ->relationship('mesa', 'id')
+                                    ->placeholder('Selecione uma mesa')
+                                    ->default(null),
+
+                                Forms\Components\Select::make('cliente_id')
+                                    ->label('Cliente')
+                                    ->relationship('cliente.user', 'name')
+                                    ->searchable()
+                                    ->placeholder('Selecione um cliente')
+                                    ->default(null),
+                            ]),
+                    ]),
             ]);
     }
 
@@ -44,13 +94,49 @@ class PedidoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('status_pagamento'),
-                Tables\Columns\TextColumn::make('forma_pagamento'),
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable()
+                    ->numeric(),
+                Tables\Columns\TextColumn::make('status')
+                    ->sortable()
+                    ->badge()
+                    ->colors([
+                        'warning' => 'Aguardando',  // Cor para o status "pendente"
+                        'success' => 'Concluido',     // Cor para o status "ativo"
+                        'danger'  => 'Cancelado',   // Cor para o status "inativo"
+                    ]),
+                Tables\Columns\TextColumn::make('status_pagamento')
+                    ->badge()
+                    ->colors([
+                        'warning' => 'Pendente',    // Cor para o status "Pendente"
+                        'success' => 'Pago',        // Cor para o status "Pago"
+                        'danger'  => 'Cancelado',   // Cor para o status "Cancelado"
+                    ]),
+                Tables\Columns\TextColumn::make('forma_pagamento')
+                    ->badge()
+                    ->colors([
+                        'warning' => 'Cartao',      // Cor para o status "Cartão"
+                        'success' => 'Dinheiro',  // Cor para o status "Dinheiro"
+                        'info' => 'Pix',            // Cor para o status "Pix"
+                    ])
+                    ->icon(function ($record) {
+                        // Defina o ícone com base no valor de forma_pagamento
+                        switch ($record->forma_pagamento) {
+                            case 'Cartao':
+                                return 'gmdi-credit-card-o'; // Ícone para Cartão
+                            case 'Dinheiro':
+                                return 'gmdi-monetization-on-r'; // Ícone para Dinheiro
+                            case 'Pix':
+                                return 'gmdi-pix-o'; // Ícone para Pix
+                            default:
+                                return 'gmdi-pix-o'; // Ícone default
+                        }
+                    }),
                 Tables\Columns\TextColumn::make('mesa.id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('cliente.id')
+                Tables\Columns\TextColumn::make('cliente.user.name')
+                    ->label('Cliente')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
