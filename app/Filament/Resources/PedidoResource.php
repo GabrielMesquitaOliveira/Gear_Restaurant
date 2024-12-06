@@ -19,7 +19,7 @@ class PedidoResource extends Resource
 {
     protected static ?string $model = Pedido::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-shopping-bag';
 
     protected static ?string $navigationGroup = 'Gestão de Operações';
 
@@ -98,20 +98,39 @@ class PedidoResource extends Resource
                     ->sortable()
                     ->numeric(),
                 Tables\Columns\TextColumn::make('status')
-                    ->sortable()
                     ->badge()
                     ->colors([
                         'warning' => 'Aguardando',  // Cor para o status "pendente"
                         'success' => 'Concluido',     // Cor para o status "ativo"
                         'danger'  => 'Cancelado',   // Cor para o status "inativo"
-                    ]),
+                    ])
+                    ->icon(function ($record){
+                        switch ($record->status) {
+                            case 'Aguardando':
+                                return 'heroicon-o-arrow-path';
+                            case 'Concluido':
+                                return 'heroicon-c-check-circle';
+                            case 'Cancelado':
+                                return 'heroicon-c-x-circle';
+                        }
+                    }),
                 Tables\Columns\TextColumn::make('status_pagamento')
                     ->badge()
                     ->colors([
                         'warning' => 'Pendente',    // Cor para o status "Pendente"
                         'success' => 'Pago',        // Cor para o status "Pago"
                         'danger'  => 'Cancelado',   // Cor para o status "Cancelado"
-                    ]),
+                    ])
+                    ->icon(function ($record){
+                        switch ($record->status_pagamento){
+                            case 'Pendente':
+                                return 'heroicon-o-arrow-path';
+                            case 'Pago':
+                                return 'heroicon-c-check-circle';
+                            case 'Cancelado':
+                                return 'heroicon-c-x-circle';
+                        }
+                    }),
                 Tables\Columns\TextColumn::make('forma_pagamento')
                     ->badge()
                     ->colors([
@@ -140,6 +159,7 @@ class PedidoResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Data e Hora do Pedido')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
