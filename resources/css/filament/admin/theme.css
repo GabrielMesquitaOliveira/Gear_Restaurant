@@ -83,3 +83,8 @@
 .curator-media-picker ul li button {
     @apply text-primary-50;
 }
+
+/* Table */
+.fi-badge {
+    @apply text-sm !important;
+}
