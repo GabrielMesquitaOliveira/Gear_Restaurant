@@ -102,13 +102,18 @@ class PedidoResource extends Resource
                     ->colors([
                         'info'=> 'Novo',
                         'warning' => 'Preparo',  // Cor para o status "pendente"
+                        'primary' => 'Enviado',
                         'success' => 'Concluido',     // Cor para o status "ativo"
                         'danger'  => 'Cancelado',   // Cor para o status "inativo"
                     ])
                     ->icon(function ($record){
                         switch ($record->status) {
+                            case 'Novo':
+                                return 'gmdi-sparkles';
                             case 'Preparo':
                                 return 'heroicon-o-arrow-path';
+                            case 'Enviado':
+                                return 'heroicon-o-paper-airplane';
                             case 'Concluido':
                                 return 'heroicon-c-check-circle';
                             case 'Cancelado':
