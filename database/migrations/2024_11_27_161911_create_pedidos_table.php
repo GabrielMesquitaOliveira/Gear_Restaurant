@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ["Aguardando","Processando","Concluido","Cancelado"]);
+            $table->enum('status', ["Novo","Preparo","Concluido","Cancelado"]);
             $table->enum('status_pagamento', ["Pendente","Pago","Cancelado"]);
             $table->enum('forma_pagamento', ["Cartao","Dinheiro","Pix"]);
             $table->foreignId('mesa_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();

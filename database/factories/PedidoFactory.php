@@ -23,7 +23,7 @@ class PedidoFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => $this->faker->randomElement(["Aguardando","Processando","Concluido","Cancelado"]),
+            'status' => $this->faker->randomElement(["Novo","Preparo","Concluido","Cancelado"]),
             'status_pagamento' => $this->faker->randomElement(["Pendente","Pago","Cancelado"]),
             'forma_pagamento' => $this->faker->randomElement(["Cartao","Dinheiro","Pix"]),
             'mesa_id' => Mesa::inRandomOrder()->first()->id,
